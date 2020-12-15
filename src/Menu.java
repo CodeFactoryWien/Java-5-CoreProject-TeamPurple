@@ -12,13 +12,58 @@ public class Menu {
         showMenu(dataAccess);
     }
     public void showMenu(DataAccess dataAccess){
-        System.out.println("\nSelect from the following:\n" +
-                "1) Display all students.\n" +
-                "2) Display all teachers.\n" +
-                "3) Display all classes.\n" +
-                "4) Display courses of a specific teacher.\n" +
-                "0) Quit");
+        int n = 0;
 
-        System.out.println("\nEnter your choice: ");
+        do {
+
+            System.out.println("+++++++++++++++++++++++++++++++++++" + "\n");
+            System.out.println("1. Display all Rooms");
+            System.out.println("2. Display all All Available Room");
+            System.out.println("3. Display the guests that are booked in the rooms");
+            System.out.println("4. Display all invoice");
+            System.out.println("5. Quit");
+            System.out.println("++++++++++++++++++++++++++++++++++++" + "\n");
+            try {
+                Scanner user_input = new Scanner(System.in);
+                System.out.println("Enter Your Choice");
+                int x = user_input.nextInt();
+                if (x >= 1 && x <= 5) {
+                    switch (x) {
+                        case 1: {
+                            All_Rooms me = new All_Rooms();
+                            me.showAll_Rooms();
+                            break;
+                        }
+                        case 2: {
+                            AllAvailableRoom me = new AllAvailableRoom();
+                            me.showAllAvailableRoom();
+                            break;
+                        }
+                        case 3: {
+                            dataAccess.displayAllGuests();
+                            showMenu(dataAccess);
+                            break;
+                        }
+                        case 4: {
+
+                            System.out.println("we working of it+ ");
+                            break;
+                        }
+                        case 5: {
+                            System.out.println("Exit");
+                            n = -1;
+                            break;
+                        }
+
+                    }
+                } else {
+                    System.out.println("\"Enter Valid number from 1-5 \"");
+                }
+            } catch (Exception e) {
+                System.out.println("Enter numeric value(number from 1-5)");
+            }
+
+        } while (n == 0);
+        System.out.println("Thanks bye");
     }
 }
