@@ -50,10 +50,10 @@ public class DataAccess {
     }
 
 public void displayAllGuests(){
-    ArrayList <DisplayGuests> studentList = getAllGuests();
+    ArrayList <DisplayGuests> guestList = getAllGuests();
     System.out.println("First Name: / Last Name: / Address: / Zip-Code: / Country: / Email: / Birth Date: / Phone Number: / Document: / Arrival Date: / Depature Date: ");
-    for (int i = 0; i < studentList.size(); i++) {
-        System.out.println(studentList.get(i).getFirstName() + " / " + studentList.get(i).getLastName() + " / " + studentList.get(i).getAddress() + " / " + studentList.get(i).getZip() + " / " + studentList.get(i).getCountry() + " / " + studentList.get(i).getEmail() + " / " + studentList.get(i).getBirth() + " / " + studentList.get(i).getPhoneNumber() + " / " + studentList.get(i).getDocument() + " / " +  studentList.get(i).getArrival() + " / " +  studentList.get(i).getDepature());
+    for (int i = 0; i < guestList.size(); i++) {
+        System.out.println(guestList.get(i).getFirstName() + " / " + guestList.get(i).getLastName() + " / " + guestList.get(i).getAddress() + " / " + guestList.get(i).getZip() + " / " + guestList.get(i).getCountry() + " / " + guestList.get(i).getEmail() + " / " + guestList.get(i).getBirth() + " / " + guestList.get(i).getPhoneNumber() + " / " + guestList.get(i).getDocument() + " / " +  guestList.get(i).getArrival() + " / " +  guestList.get(i).getDepature());
     }
 }
 /*
