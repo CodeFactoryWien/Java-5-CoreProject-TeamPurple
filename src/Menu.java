@@ -63,10 +63,10 @@ public class Menu {
 
                     }
                 } else {
-                    System.out.println("\"Enter Valid number from 1-5 \"");
+                    System.out.println("\"Enter Valid number from 1-6 \"");
                 }
             } catch (Exception e) {
-                System.out.println("Enter numeric value(number from 1-5)");
+                System.out.println("Enter numeric value(number from 1-6)");
             }
 
         } while (n == 0);
