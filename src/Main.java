@@ -4,10 +4,8 @@ public class Main {
     public static void main(String[] args) {
         inputUSERNameAndPassword n=new  inputUSERNameAndPassword();
         n.showInputUSERNameAndPassword();
-        init();
-        new Menu(dataAccess);
 
-        stop();
+
     }
 
     static public void init(){
