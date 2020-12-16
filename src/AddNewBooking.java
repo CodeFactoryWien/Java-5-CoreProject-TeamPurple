@@ -42,6 +42,9 @@ public class AddNewBooking {
         String status=enterStatus();            // {Booked,CANCELLED,PAYED,OPEN}
         String notes = enterNotes();
         int fk_staff_id=AddNewBooking.userId;
+        if (fk_staff_id==0){
+            fk_staff_id=1;
+        }
 
         ArrayList<Integer> freeRooms= availableRoom(con,arrival,departure);
         int fk_room_id=selectRoom(freeRooms);
