@@ -1,8 +1,13 @@
 //Editor: Gabriella
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WorkInvoice {
@@ -17,6 +22,10 @@ public class WorkInvoice {
         this.fk_bookings_id = fk_bookings_id;
         this.fk_stuff_id = fk_stuff_id;
     }
+
+   /* public static void listAllInvoices(){
+
+    }*/
 
 
 
@@ -88,11 +97,43 @@ public class WorkInvoice {
      *
      */
     public static boolean invoiceGenerator(MyBooking bookingObj) {
-        String path="D:\\";
-        String pathAndFileName = path+"invoiceErr.txt";
-        String filename;
-        Connection con;
 
+        String path="C:\\Test";
+        String pathAndFileName = path+"\\invoiceErr.txt";
+        String filename;
+        String pathNew="C:\\Test";
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("the report will be generated: "+path);
+
+        String choice = askingYesOrNo("Do you want to change this? Y/N");
+        boolean exit;
+        exit= !choice.equals("Y");
+        File file1;
+
+        while(!exit) {
+            System.out.println("Old Path: " + path + "   Please enter new Path: ");
+            pathNew = scanner.nextLine();
+
+            file1 = new File(pathNew);
+            if (file1.exists()) {
+                exit = true;
+                pathAndFileName=pathNew+"\\invoiceErr.txt";
+                path=pathNew;
+                System.out.println("Filepath is accepted!" + pathNew);
+            } else {
+                if(pathNew.equals("")){
+                    System.out.println("Empty file path, process finished!");
+                    System.out.println();
+                    return false;
+                }
+                exit = false;
+                System.out.println("NOT existing filepath!" + pathNew);
+            }
+
+        }
+        Connection con;
         try {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -120,7 +161,7 @@ public class WorkInvoice {
                 invoiceDate = rs.getDate("date");
                 System.out.println("Invoice Id: "+invoiceId+"  Invoice Date: "+invoiceDate);
                 filename="invoice"+bookingObj.id;
-                pathAndFileName=path+filename;
+                pathAndFileName=path+"\\"+filename+".txt";
             }else{
                 System.out.println("There is a big big technical problem, connect please the system Administrator");
             }
@@ -155,6 +196,58 @@ public class WorkInvoice {
             e.printStackTrace();
         }
         return true;
+    }
+
+    /**
+     *
+     * @return arrylist with null: not succeed, succeed:arraylist wit two items from and to date
+     */
+    public static ArrayList<String> askPeriod(){
+        ArrayList<String> period=null;
+        boolean exit=false;
+        String fromDate = null;
+        String toDate = null;
+        System.out.println("Enter date of arrival and date of departure in format YYYY-MM-dd");
+        Scanner sc = new Scanner(System.in);
+        while(!exit) {
+            System.out.println("From date:\n");
+            fromDate = sc.next();
+            System.out.println("To date:\n");
+            toDate = sc.next();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                java.util.Date DateFrom = format.parse(fromDate);
+                java.util.Date DateTo = format.parse(toDate);
+                period.add(fromDate);
+                period.add(toDate);
+                exit=true;
+            } catch (ParseException e) {
+                System.out.println("Wrong date format! Try it again");
+                // e.printStackTrace();
+            }
+        }
+        return period;
+    }
+    /**
+     *
+     * @param question this is the text,the question to answer with yes or no
+     * @return it gives back Y or N in form of a String object
+     */
+    public static String askingYesOrNo(String question){
+        String choice="";
+        Scanner scanner = new Scanner(System.in);
+        boolean exit=false;
+        while (!exit){
+            System.out.println(question);
+            choice=scanner.nextLine();
+            choice=choice.toUpperCase();
+            if (choice.equals("N") || choice.equals("Y")  ){
+                exit=true;
+            }else{
+                System.out.println("Wrong input, can only be Y/N.");
+            }
+        }
+        return choice.toUpperCase();
     }
 
     public static Connection init(){
