@@ -1,5 +1,4 @@
 //Editor: Gabriella
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

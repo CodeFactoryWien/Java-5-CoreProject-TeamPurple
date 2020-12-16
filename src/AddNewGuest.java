@@ -34,7 +34,7 @@ public class AddNewGuest {
             System.out.println("Enter Zip");
             String ZIP = scanner.next();
 
-            System.out.println("Enter country");
+            System.out.println("Enter country code");
             String country = scanner.next();
 
             System.out.println("Enter email");

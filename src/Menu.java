@@ -12,23 +12,24 @@ public class Menu {
         showMenu(dataAccess);
     }
     public void showMenu(DataAccess dataAccess){
-        int n = 0;
+        int n = -1;
 
         do {
 
             System.out.println("+++++++++++++++++++++++++++++++++++" + "\n");
             System.out.println("1. Display all Rooms");
-            System.out.println("2. Display all All Available Room");
+            System.out.println("2. Display all Available Room");
             System.out.println("3. Display the guests that are booked in the rooms");
             System.out.println("4. Create new Guest");
             System.out.println("5. Create invoice");
-            System.out.println("6. Quit");
+            System.out.println("6. Create booking");
+            System.out.println("0. Quit");
             System.out.println("++++++++++++++++++++++++++++++++++++" + "\n");
             try {
                 Scanner user_input = new Scanner(System.in);
                 System.out.println("Enter Your Choice");
                 int x = user_input.nextInt();
-                if (x >= 1 && x <= 6) {
+                if (x >= 0 && x <= 6) {
                     switch (x) {
                         case 1: {
                             All_Rooms me = new All_Rooms();
@@ -54,21 +55,26 @@ public class Menu {
                             WorkInvoice.createInvoice();
                             break;
                         }
-
                         case 6: {
+                            AddNewBooking.addNewBooking();
+                            break;
+                        }
+                        case 0: {
                             System.out.println("Exit");
-                            n = -1;
+                            n=-2;
                             break;
                         }
                     }
                 } else {
-                    System.out.println("\"Enter Valid number from 1-6 \"");
+
+                    System.out.println("\"Enter Valid number from 0-6 \"");
                 }
             } catch (Exception e) {
-                System.out.println("Enter numeric value(number from 1-6)");
+
+                System.out.println("Enter numeric value(number from 0-6)");
             }
 
-        } while (n == 0);
+        } while (n == -1);
         System.out.println("Thanks bye");
     }
 }

@@ -42,6 +42,7 @@ public class MyBooking {
         this.staffName = staffName;
     }
 
+
     public static MyBooking checkBookingId(int bookingId){
         MyBooking selectedBooking=null;
 
@@ -144,6 +145,5 @@ public class MyBooking {
         return option;
     }
 
-
-
 }
+
