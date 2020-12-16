@@ -1,12 +1,12 @@
-import java.sql.*;
-import java.util.*;
-
 public class Main {
     static DataAccess dataAccess;
 
     public static void main(String[] args) {
+        inputUSERNameAndPassword n=new  inputUSERNameAndPassword();
+        n.showInputUSERNameAndPassword();
         init();
         new Menu(dataAccess);
+
         stop();
     }
 

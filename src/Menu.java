@@ -6,7 +6,7 @@ public class Menu {
     public Menu(DataAccess dataAccess){
         System.out.println("+------------------------------------+");
         System.out.println("|                                    |");
-        System.out.println("|     Welcome to the school menu     |");
+        System.out.println("|     Welcome to hotel menu     |");
         System.out.println("|                                    |");
         System.out.println("+------------------------------------+");
         showMenu(dataAccess);
