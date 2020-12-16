@@ -33,17 +33,20 @@ import java.util.Scanner;
                     String inputPassword= scc.next();
                     PreparedStatement passWordDatabase = connection.prepareStatement("SELECT staff.password FROM staff");
                     ResultSet rs = passWordDatabase.executeQuery();
+
                     PreparedStatement usernameDatabase = connection.prepareStatement("SELECT staff.username FROM staff");
                     ResultSet rs1 = usernameDatabase.executeQuery();
 
-                    if(inputUser.equals(usernameDatabase) && inputPassword.equals(passWordDatabase)){
                         while (rs.next()&&rs1.next()) {
+                            String usernameDatabase1= rs1.getString("username");
+                            String passWordDatabase1= rs.getString("password");
 
-                            System.out.println("wellcome");
+                            if (inputUser.equals(usernameDatabase1) && inputPassword.equals(passWordDatabase1)) {
+                                System.out.println("well come");
+                            } else {
+                                System.out.println("\"Enter Valid username and password");
+                            }
                         }
-                    } else {
-                        System.out.println("\"Enter Valid username and password");
-                    }
                 }catch (Exception e) {
                     System.out.println("Enter numeric value(username and password");
                 }
