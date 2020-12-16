@@ -32,11 +32,9 @@ public class AllAvailableRoom {
             ResultSet rs = ps.executeQuery();
             System.out.println("-----available rooms -----");
             while (rs.next()) {
-                    System.out.println("ID: " + rs.getInt("id") + " " + rs.getString("name") + " price: " + rs.getFloat("price"));
-                    if (fromDate != sqlDateTo.toString()) {
-                        System.out.println("Not available");
-                    }
+                System.out.println("ID: " + rs.getInt("id") + " " + rs.getString("name") + " price: " + rs.getFloat("price"));
             }
+            System.out.println("Not available");
         } catch (Exception ex) {
             System.out.println(ex);
         }
