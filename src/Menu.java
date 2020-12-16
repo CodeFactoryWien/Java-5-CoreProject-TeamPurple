@@ -41,8 +41,8 @@ public class Menu {
                             break;
                         }
                         case 3: {
-                            dataAccess.displayAllGuests();
-                            showMenu(dataAccess);
+                            DataAccess me = new DataAccess();
+                            me.displayAllGuests();
                             break;
                         }
                         case 4: {
