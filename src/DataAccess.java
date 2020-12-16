@@ -56,50 +56,6 @@ public void displayAllGuests(){
         System.out.println(guestList.get(i).getFirstName() + " / " + guestList.get(i).getLastName() + " / " + guestList.get(i).getAddress() + " / " + guestList.get(i).getZip() + " / " + guestList.get(i).getCountry() + " / " + guestList.get(i).getEmail() + " / " + guestList.get(i).getBirth() + " / " + guestList.get(i).getPhoneNumber() + " / " + guestList.get(i).getDocument() + " / " +  guestList.get(i).getArrival() + " / " +  guestList.get(i).getDepature());
     }
 }
-/*
-    public ArrayList<DisplayGuests> createGuest(){
-        ArrayList <DisplayGuests> guestList = new ArrayList<>();
-
-
-        System.out.println("type max Users");
-        Scanner in = new Scanner(System.in);
-        int id = in.nextInt();
-
-        System.out.println("fdkajf");
-        String firstName = in.nextLine();
-
-        System.out.println("type ticket price");
-        String lastName = in.nextLine();
-
-        System.out.println("type price pool");
-        String address = in.nextLine();
-
-        System.out.println("type event name");
-        String asdf = in.nextLine();  //for some reason it doesnt work without this unused line
-        String zip = in.nextLine();
-
-        System.out.println("type number of players");
-        String country = in.nextLine();
-
-        System.out.println("type number of players");
-        String email = in.nextLine();
-
-        System.out.println("type event date(please enter this format DD/MM/YYYY)");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-
-        String date = in.nextLine();
-
-        System.out.println("type number of players");
-        int phoneNumber = in.nextInt();
-
-        System.out.println("asdf");
-        String document = in.nextLine();
-
-        guestList.add(new DisplayGuests(id, firstName, lastName, address, zip, country, email, date, phoneNumber, document));
-
-        return guestList;
-    }
-*/
 
     public void closeDB() throws SQLException {
         System.out.println("Closing connection...");
