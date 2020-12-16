@@ -22,8 +22,8 @@ public class All_Rooms {
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
-                    System.out.println("ID: "+rs.getInt("id") + "| "+"room number : "+rs.getString("room_number")+"| "+"room name : "+rs.getString("name")+" | "+" price: "+rs.getFloat("price"));
-                    System.out.println("___________________________________________________________________");
+                    System.out.println("ID: "+rs.getInt("id") + "| "+"room name : "+rs.getString("name")+" | "+"room number : "+rs.getString("room_number")+"| "+"facilities : "+rs.getString("facilities")+"| "+"roomsize : "+rs.getString("roomsize")+"| "+" price: "+rs.getFloat("price"));
+                    System.out.println("__________________________________________________________________________________________________________________________________________");
                 }
                 connection.close();
 
