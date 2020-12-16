@@ -21,7 +21,8 @@ public class Menu {
             System.out.println("2. Display all All Available Room");
             System.out.println("3. Display the guests that are booked in the rooms");
             System.out.println("4. Display all invoice");
-            System.out.println("5. Quit");
+            System.out.println("5. Create invoice");
+            System.out.println("6. Quit");
             System.out.println("++++++++++++++++++++++++++++++++++++" + "\n");
             try {
                 Scanner user_input = new Scanner(System.in);
@@ -50,6 +51,11 @@ public class Menu {
                             break;
                         }
                         case 5: {
+                            WorkInvoice.createInvoice();
+                            break;
+                        }
+
+                        case 6: {
                             System.out.println("Exit");
                             n = -1;
                             break;
