@@ -6,7 +6,7 @@ public class Menu {
     public Menu(DataAccess dataAccess){
         System.out.println("+------------------------------------+");
         System.out.println("|                                    |");
-        System.out.println("|     Welcome to hotel menu     |");
+        System.out.println("|     Welcome to hotel menu          |");
         System.out.println("|                                    |");
         System.out.println("+------------------------------------+");
         showMenu(dataAccess);
@@ -28,7 +28,7 @@ public class Menu {
                 Scanner user_input = new Scanner(System.in);
                 System.out.println("Enter Your Choice");
                 int x = user_input.nextInt();
-                if (x >= 1 && x <= 5) {
+                if (x >= 1 && x <= 6) {
                     switch (x) {
                         case 1: {
                             All_Rooms me = new All_Rooms();
