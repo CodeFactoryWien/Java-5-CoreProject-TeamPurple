@@ -20,7 +20,7 @@ public class Menu {
             System.out.println("1. Display all Rooms");
             System.out.println("2. Display all All Available Room");
             System.out.println("3. Display the guests that are booked in the rooms");
-            System.out.println("4. Display all invoice");
+            System.out.println("4. Create new Guest");
             System.out.println("5. Create invoice");
             System.out.println("6. Quit");
             System.out.println("++++++++++++++++++++++++++++++++++++" + "\n");
@@ -46,8 +46,8 @@ public class Menu {
                             break;
                         }
                         case 4: {
-
-                            System.out.println("we working of it+ ");
+                            AddNewGuest me = new AddNewGuest();
+                            me.addNewGuest();
                             break;
                         }
                         case 5: {
@@ -60,7 +60,6 @@ public class Menu {
                             n = -1;
                             break;
                         }
-
                     }
                 } else {
                     System.out.println("\"Enter Valid number from 1-6 \"");

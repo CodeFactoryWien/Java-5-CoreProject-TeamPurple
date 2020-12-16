@@ -88,8 +88,7 @@ public class WorkInvoice {
      *
      */
     public static boolean invoiceGenerator(MyBooking bookingObj) {
-
-        String path="C:\\Test\\";
+        String path="D:\\";
         String pathAndFileName = path+"invoiceErr.txt";
         String filename;
         Connection con;

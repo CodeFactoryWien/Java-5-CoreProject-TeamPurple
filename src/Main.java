@@ -4,8 +4,6 @@ public class Main {
     public static void main(String[] args) {
         inputUSERNameAndPassword n=new  inputUSERNameAndPassword();
         n.showInputUSERNameAndPassword();
-
-
     }
 
     static public void init(){
