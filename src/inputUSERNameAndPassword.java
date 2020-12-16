@@ -42,13 +42,19 @@ import java.util.Scanner;
                             String passWordDatabase1= rs.getString("password");
 
                             if (inputUser.equals(usernameDatabase1) && inputPassword.equals(passWordDatabase1)) {
-                                System.out.println("well come");
-                            } else {
-                                System.out.println("\"Enter Valid username and password");
+                                System.out.println("welcome");
+                                break;
                             }
                         }
+                    String usernameDatabase1= rs1.getString("username");
+                    String passWordDatabase1= rs.getString("password");
+                    if (!inputUser.equals(usernameDatabase1) && !inputPassword.equals(passWordDatabase1)){
+                        System.out.println("\"Enter Valid username and password");
+                        connection.close();
+                    }
                 }catch (Exception e) {
-                    System.out.println("Enter numeric value(username and password");
+                    System.out.println("Enter Valid username and password");
+                    connection.close();
                 }
                 connection.close();
 
