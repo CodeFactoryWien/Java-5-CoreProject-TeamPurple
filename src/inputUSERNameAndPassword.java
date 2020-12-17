@@ -8,15 +8,20 @@ public class  inputUSERNameAndPassword{
     private static final String PASSWORD = "";
     Connection connection = null;
     public void showInputUSERNameAndPassword() {
+
         try {
             Class.forName(JDBC_Driver);
             connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
+
             try {
+
+
+
                 System.out.println("Enter username");
                 Scanner scc = new Scanner(System.in);
-                String inputUser= scc.next();
+                String inputUser= scc.nextLine();
                 System.out.println("Enter password");
-                String inputPassword= scc.next();
+                String inputPassword= scc.nextLine();
                 PreparedStatement passWordDatabase = connection.prepareStatement("SELECT staff.id, staff.password FROM staff");
                 ResultSet rs = passWordDatabase.executeQuery();
                 PreparedStatement usernameDatabase = connection.prepareStatement("SELECT staff.username FROM staff");
@@ -37,20 +42,22 @@ public class  inputUSERNameAndPassword{
                 String passWordDatabase1= rs.getString("password");
                 if (!inputUser.equals(usernameDatabase1) && !inputPassword.equals(passWordDatabase1)){
                     System.out.println("\"Enter Valid username and password");
-                    connection.close();
                 }
-            }catch (Exception e) {
+
+            }
+            catch (Exception e) {
                 System.out.println("Enter Valid username and password");
                 connection.close();
             }
-            //asdf
+
             connection.close();
         } catch (SQLException sql) {
             sql.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
+
+    }}
+
     public static void main(String[] args) {
         inputUSERNameAndPassword in= new inputUSERNameAndPassword();
         in.showInputUSERNameAndPassword();

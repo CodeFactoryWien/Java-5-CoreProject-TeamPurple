@@ -1,7 +1,14 @@
 import java.net.Inet4Address;
+import java.sql.Connection;
 import java.util.Scanner;
 
 public class Menu {
+    static Scanner scanner = new Scanner(System.in);
+    static final String JDBC_Driver = "com.mysql.cj.jdbc.Driver";
+    static final String url = "jdbc:mysql://localhost:3306/hotel";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
+    Connection connection = null;
     private static Scanner scan = new Scanner(System.in);
     public Menu(DataAccess dataAccess){
         System.out.println("+------------------------------------+");
@@ -64,6 +71,7 @@ public class Menu {
                         }
                         case 0: {
                             n=-2;
+
                             break;
                         }
                     }

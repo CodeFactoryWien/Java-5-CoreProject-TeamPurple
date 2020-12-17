@@ -20,22 +20,22 @@ public class AddNewGuest {
             System.out.println("Enter new Guest");
 
             System.out.println("Enter FirstName");
-            String firstName = scanner.next();
+            String firstName = scanner.nextLine();
 
             System.out.println("Enter lastname");
-            String lastName = scanner.next();
+            String lastName = scanner.nextLine();
 
             System.out.println("Enter address");
-            String address = scanner.next();
+            String address = scanner.nextLine();
 
             System.out.println("Enter Zip");
-            String ZIP = scanner.next();
+            String ZIP = scanner.nextLine();
 
             System.out.println("Enter country code");
-            String country = scanner.next();
+            String country = scanner.nextLine();
 
             System.out.println("Enter email");
-            String email = scanner.next();
+            String email = scanner.nextLine();
 
 
             //System.out.println("Enter birthdate in format yyyy-MM-dd");
@@ -47,10 +47,10 @@ public class AddNewGuest {
             //java.sql.Date sqlBirth = new java.sql.Date(birth.getTime());
 
             System.out.println("Enter telephone");
-           String telephone = scanner.next();
+           String telephone = scanner.nextLine();
 
             System.out.println("Enter document");
-            String document = scanner.next();
+            String document = scanner.nextLine();
 
 
             PreparedStatement ps = connection.prepareStatement("insert into guests (`first_name`,`last_name`,`adress`,`zip`,`country`,`email`,`birth`,`phone_number`,`document`)\n" +
