@@ -9,24 +9,30 @@ public class AllAvailableRoom {
     private static final String PASSWORD = "";
     Connection connection = null;
     public void showAllAvailableRoom() {
+        //Date arrival=askDate("Please enter the Date of arrival YYYY.MM.DD: ");
+        AddNewBooking anbObj= new AddNewBooking();
         try {
             connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
-            String fromDate = null;
-            String toDate = null;
-            System.out.println("Enter date of arrival and date of departure in format YYYY-MM-dd");
-            Scanner sc = new Scanner(System.in);
-            fromDate = sc.next();
-            toDate = sc.next();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            //String fromDate = null;
+            //String toDate = null;
+            Date fromDate = anbObj.askDate("Please enter the Date of arrival YYYY.MM.DD: ");
+            Date toDate = anbObj.askDate("Please enter the Date of departure YYYY.MM.DD: ");
+
+            //System.out.println("Enter date of arrival and date of departure in format YYYY-MM-dd");
+            //Scanner sc = new Scanner(System.in);
+            //fromDate = sc.next();
+            //toDate = sc.next();
+            /*SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date DateFrom = format.parse(fromDate);
             java.sql.Date sqlDateFrom = new java.sql.Date(DateFrom.getTime());
             java.util.Date DateTo = format.parse(toDate);
-            java.sql.Date sqlDateTo = new java.sql.Date(DateTo.getTime());
+            java.sql.Date sqlDateTo = new java.sql.Date(DateTo.getTime());*/
+
             PreparedStatement ps = connection.prepareStatement("select rr.id, cc.name, cc.capacity, cc.price, cc.roomsize from rooms as rr \n" +
                     "inner join category as cc on cc.id=rr.fk_category_id\n" +
                     "where rr.id not in(SELECT bb.fk_room_id from bookings as bb where bb.departure_date>=? and bb.arrival_date<=?)");
-            ps.setDate(1, sqlDateFrom);
-            ps.setDate(2, sqlDateTo);
+            ps.setDate(1, fromDate);
+            ps.setDate(2, toDate);
             ResultSet rs = ps.executeQuery();
             System.out.println("-----available rooms -----");
             if (rs.next())
