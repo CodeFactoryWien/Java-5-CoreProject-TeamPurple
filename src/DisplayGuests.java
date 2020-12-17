@@ -121,8 +121,8 @@ public class DisplayGuests {
                 ", country='" + country + '\'' +
                 ", email='" + email + '\'' +
                 ", birth=" + birth +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", document='" + document + '\'' +
+                ", phoneNumber='" + phoneNumber + '\t' +
+                ", document='" + document + '\t' +
                 ", arrival=" + arrival +
                 ", depature=" + depature +
                 '}';
