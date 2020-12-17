@@ -54,12 +54,12 @@ public void displayAllGuests(){
     ArrayList <DisplayGuests> guestList = getAllGuests();
     //System.out.println("First Name: / Last Name: / Address: / Zip-Code: / Country: / Email: / Birth Date: / Phone Number: / Document: / Arrival Date: / Depature Date: ");
     System.out.println("First Name   Last Name       Address          Zip       Country          Email          " +
-            " Birth Date  Phone Number  Document      Arrival  Departure ");
+            " Birth Date  Phone Number        Document            Arrival  Departure ");
     for (int i = 0; i < guestList.size(); i++) {
         //System.out.println(guestList.get(i).getFirstName() + " / " +  guestList.get(i).getLastName()+
         // " / " + guestList.get(i).getAddress() + " / " + guestList.get(i).getZip() + " / " +
         // guestList.get(i).getCountry() + " / " + guestList.get(i).getEmail() + " / " + guestList.get(i).getBirth()
-        // + " / " + guestList.get(i).getPhoneNumber() + " / " + guestList.get(i).getDocument() + " / " +  guestList.get(i).getArrival() + " / " +  guestList.get(i).getDepature());
+        // + " / " + guestList.get(i).getPhoneNumber() + " / " + guestList.get(i).getDocument() + "    /   " +  guestList.get(i).getArrival() + " /    " +  guestList.get(i).getDepature());
         System.out.println(formatString(12,guestList.get(i).getFirstName())+"  "+
                 formatString(15,guestList.get(i).getLastName())+"  " +
                 formatString(15,guestList.get(i).getAddress())+"   " +
