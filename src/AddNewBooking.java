@@ -1,8 +1,10 @@
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -37,21 +39,39 @@ public class AddNewBooking {
         guest=selectGuest(con);   //hier is insert guest ID
         Date arrival=askDate("Please enter the Date of arrival YYYY.MM.DD: ");
         Date departure=askDate("Please enter the Date of departure YYYY.MM.DD: ");
-        int total =askTotal();
-        String payment_type=enterPaymentType();         //{CREDIT_CARD, PAYPAL,BANK_TRANSFER,CASH}
-        String status=enterStatus();            // {Booked,CANCELLED,PAYED,OPEN}
-        String notes = enterNotes();
-        int fk_staff_id=AddNewBooking.userId;
-        if (fk_staff_id==0){
-            fk_staff_id=1;
-        }
-
-        ArrayList<Integer> freeRooms= availableRoom(con,arrival,departure);
+        int period=differenceInDays(arrival.toLocalDate(),departure.toLocalDate());
+        System.out.println("Booked nights: "+period);
+        ArrayList<Room> freeRooms= availableRoom(con,arrival,departure);
         int fk_room_id=selectRoom(freeRooms);
         if (fk_room_id==0){
             System.out.println("there is something wrong with the Room number, we must exit!");
             return;
         }
+        int total=0;
+        int price=0;
+        for (Room element:freeRooms) {
+            if(fk_room_id== element.roomId){
+                price=(int)element.price;
+                total = period*price;   //askTotal();
+            }
+        }
+        if(total==0){
+            System.out.println("I could not find valid price for this room, please add the final amount to pay!");
+            total=askTotal();
+        }else{
+            System.out.println("Price of room: " +price+"   Final amount to pay : "+total);
+        }
+
+        //int total =askTotal();
+        String payment_type=enterPaymentType();         //{CREDIT_CARD, PAYPAL,BANK_TRANSFER,CASH}
+        String status=enterStatus();            // {Booked,CANCELLED,PAYED,OPEN}
+        String notes = enterNotes();
+
+        int fk_staff_id=AddNewBooking.userId;
+        if (fk_staff_id==0){
+            fk_staff_id=1;
+        }
+
 
         MyBooking newBooking= new MyBooking(0,arrival,departure,total,payment_type,status,notes,
                 guest.getId(),fk_room_id,fk_staff_id,guest.getFirstName(),guest.getLastName(),0,userName);
@@ -65,6 +85,15 @@ public class AddNewBooking {
             throwables.printStackTrace();
         }
 
+    }
+
+    public static int differenceInDays(LocalDate start, LocalDate end) {
+        LocalDate startDate = start;
+        LocalDate endDate = end;
+        if (start.isEqual(end)) {
+            startDate = startDate.plusDays(1);
+        }
+        return (int) ChronoUnit.DAYS.between(startDate, endDate);
     }
 
     public DisplayGuests selectGuest(Connection con) {
@@ -381,8 +410,8 @@ public class AddNewBooking {
         return notes;
     }
 
-    public static ArrayList<Integer> availableRoom(Connection con, Date arrival, Date departure) {
-        ArrayList<Integer> freeRooms=new ArrayList<>();
+    public static ArrayList<Room> availableRoom(Connection con, Date arrival, Date departure) {
+        ArrayList<Room> freeRooms=new ArrayList<>();
         try {
 
             Date sqlDateFrom = arrival;
@@ -397,7 +426,7 @@ public class AddNewBooking {
             System.out.println("-----available rooms -----");
             while (rs.next()) {
                 count++;
-                freeRooms.add(rs.getInt("id"));
+                freeRooms.add(new Room(rs.getInt("id"),rs.getFloat("price")));
                 System.out.println("ID: " + rs.getInt("id") + " " + rs.getString("name") + " price: " + rs.getFloat("price"));
             }
             if(count==0){
@@ -411,14 +440,14 @@ public class AddNewBooking {
         return freeRooms;
     }
 
-    public int selectRoom(ArrayList<Integer> freeRooms){
+    public int selectRoom(ArrayList<Room> freeRooms){
         boolean exit = false;
         int selection;
         System.out.println("Please select a Room!");
         while (!exit) {
             selection = enterSelection();
-            for (Integer element: freeRooms) {
-                if(selection==element.intValue()){
+            for (Room element: freeRooms) {
+                if(selection==element.roomId){
                     return selection;
                 }
             }

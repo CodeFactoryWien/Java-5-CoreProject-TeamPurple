@@ -23,7 +23,7 @@ public class Menu {
             System.out.println("4. Create new Guest");
             System.out.println("5. Create booking");
             System.out.println("6. Create  invoice");
-            System.out.println("0. Quit");
+            System.out.println("0. Change User");
             System.out.println("++++++++++++++++++++++++++++++++++++" + "\n");
             try {
                 Scanner user_input = new Scanner(System.in);
@@ -63,7 +63,6 @@ public class Menu {
                             break;
                         }
                         case 0: {
-                            System.out.println("Exit");
                             n=-2;
                             break;
                         }
