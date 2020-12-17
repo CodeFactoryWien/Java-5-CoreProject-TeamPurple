@@ -53,7 +53,7 @@ public void displayAllGuests(){
 
     ArrayList <DisplayGuests> guestList = getAllGuests();
     //System.out.println("First Name: / Last Name: / Address: / Zip-Code: / Country: / Email: / Birth Date: / Phone Number: / Document: / Arrival Date: / Depature Date: ");
-    System.out.println("Guest list of Hotel LIKE IN YOUR DREAM:");
+    System.out.println("Guest list:");
     System.out.println();
     System.out.println("First Name    Last Name      Address                    Zip        Country         Email          " +
             " Birth Date  Phone Number    Document             Arrival      Departure ");
