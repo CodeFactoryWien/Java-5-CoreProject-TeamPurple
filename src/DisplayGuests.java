@@ -9,12 +9,12 @@ public class DisplayGuests {
     private String country;
     private String email;
     private Date birth;
-    private int phoneNumber;
+    private String phoneNumber;
     private String document;
     private Date arrival;
     private Date depature;
 
-    public DisplayGuests(int id, String firstName, String lastName, String address, String zip, String country, String email, Date birth, int phoneNumber, String document, Date arrival, Date depature) {
+    public DisplayGuests(int id, String firstName, String lastName, String address, String zip, String country, String email, Date birth, String phoneNumber, String document, Date arrival, Date depature) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -81,10 +81,10 @@ public class DisplayGuests {
     public void setBirth(Date birth) {
         this.birth = birth;
     }
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     public String getDocument() {
@@ -121,7 +121,7 @@ public class DisplayGuests {
                 ", country='" + country + '\'' +
                 ", email='" + email + '\'' +
                 ", birth=" + birth +
-                ", phoneNumber=" + phoneNumber +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", document='" + document + '\'' +
                 ", arrival=" + arrival +
                 ", depature=" + depature +

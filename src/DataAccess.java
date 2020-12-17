@@ -32,7 +32,7 @@ public class DataAccess {
                 String country = rs.getString("country");
                 String email = rs.getString("email");
                 java.sql.Date birth = rs.getDate("birth");
-                int phoneNumber = rs.getInt("phone_number");
+                String phoneNumber = rs.getString("phone_number");
                 String document = rs.getString("document");
                 Date arrival = rs.getDate("arrival_date");
                 Date depature = rs.getDate("departure_date");
