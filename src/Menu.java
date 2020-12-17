@@ -18,11 +18,11 @@ public class Menu {
 
             System.out.println("+++++++++++++++++++++++++++++++++++" + "\n");
             System.out.println("1. Display all Rooms");
-            System.out.println("2. Display all Available Room");
-            System.out.println("3. Display the guests that are booked in the rooms");
+            System.out.println("2.Display the guests that are booked in the rooms ");
+            System.out.println("3.Display all Available Room ");
             System.out.println("4. Create new Guest");
-            System.out.println("5. Create invoice ");
-            System.out.println("6. Create booking");
+            System.out.println("5. Create booking");
+            System.out.println("6. Create  invoice");
             System.out.println("0. Quit");
             System.out.println("++++++++++++++++++++++++++++++++++++" + "\n");
             try {
@@ -37,13 +37,14 @@ public class Menu {
                             break;
                         }
                         case 2: {
-                            AllAvailableRoom me = new AllAvailableRoom();
-                            me.showAllAvailableRoom();
+                            DataAccess me = new DataAccess();
+                            me.displayAllGuests();
+
                             break;
                         }
                         case 3: {
-                            DataAccess me = new DataAccess();
-                            me.displayAllGuests();
+                            AllAvailableRoom me = new AllAvailableRoom();
+                            me.showAllAvailableRoom();
                             break;
                         }
                         case 4: {
@@ -52,14 +53,13 @@ public class Menu {
                             break;
                         }
                         case 5: {
-
-                            WorkInvoice.createInvoice();
+                            AddNewBooking anbObj=new AddNewBooking();
+                            anbObj.addNewBooking();
                             break;
                         }
                         case 6: {
-                            AddNewBooking anbObj=new AddNewBooking();
-                            anbObj.addNewBooking();
 
+                            WorkInvoice.createInvoice();
                             break;
                         }
                         case 0: {
