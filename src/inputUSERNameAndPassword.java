@@ -17,30 +17,24 @@ public class  inputUSERNameAndPassword{
                 String inputUser= scc.next();
                 System.out.println("Enter password");
                 String inputPassword= scc.next();
-                PreparedStatement passWordDatabase = connection.prepareStatement("SELECT staff.id, staff.password FROM staff");
+                PreparedStatement passWordDatabase = connection.prepareStatement("SELECT staff.password FROM staff");
                 ResultSet rs = passWordDatabase.executeQuery();
                 PreparedStatement usernameDatabase = connection.prepareStatement("SELECT staff.username FROM staff");
                 ResultSet rs1 = usernameDatabase.executeQuery();
                 while (rs.next()&&rs1.next()) {
                     String usernameDatabase1= rs1.getString("username");
                     String passWordDatabase1= rs.getString("password");
-                    int userId= rs.getInt("id");
                     if (inputUser.equals(usernameDatabase1) && inputPassword.equals(passWordDatabase1)) {
-                        AddNewBooking.userName=usernameDatabase1;
-                        AddNewBooking.userId=userId;
-                        Menu me= new Menu(Main.dataAccess);
+                       Menu me= new Menu(Main.dataAccess);
+
                         break;
                     }
                 }
                 String usernameDatabase1= rs1.getString("username");
                 String passWordDatabase1= rs.getString("password");
-
-
                 if (!inputUser.equals(usernameDatabase1) && !inputPassword.equals(passWordDatabase1)){
                     System.out.println("\"Enter Valid username and password");
                     connection.close();
-                }else{
-
                 }
             }catch (Exception e) {
                 System.out.println("Enter Valid username and password");

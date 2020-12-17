@@ -47,7 +47,7 @@ public class AddNewGuest {
             //java.sql.Date sqlBirth = new java.sql.Date(birth.getTime());
 
             System.out.println("Enter telephone");
-            long telephone = scanner.nextLong();
+           String telephone = scanner.next();
 
             System.out.println("Enter document");
             String document = scanner.next();
@@ -64,7 +64,7 @@ public class AddNewGuest {
             ps.setString(5, country);
             ps.setString(6, email);
             ps.setDate(7, birthDate);
-            ps.setLong(8, telephone);
+            ps.setString(8, telephone);
             ps.setString(9, document);
             ps.setString(10, document);
 

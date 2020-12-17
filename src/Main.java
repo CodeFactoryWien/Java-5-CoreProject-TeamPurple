@@ -2,8 +2,13 @@ public class Main {
     static DataAccess dataAccess;
 
     public static void main(String[] args) {
-        inputUSERNameAndPassword n=new  inputUSERNameAndPassword();
-        n.showInputUSERNameAndPassword();
+        int n=0;
+        do {
+
+
+        inputUSERNameAndPassword in=new  inputUSERNameAndPassword();
+        in.showInputUSERNameAndPassword();
+        }while (n==0);
     }
 
     static public void init(){

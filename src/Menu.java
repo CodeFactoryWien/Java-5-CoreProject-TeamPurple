@@ -21,7 +21,7 @@ public class Menu {
             System.out.println("2. Display all Available Room");
             System.out.println("3. Display the guests that are booked in the rooms");
             System.out.println("4. Create new Guest");
-            System.out.println("5. Create invoice");
+            System.out.println("5. Create invoice ");
             System.out.println("6. Create booking");
             System.out.println("0. Quit");
             System.out.println("++++++++++++++++++++++++++++++++++++" + "\n");
@@ -52,12 +52,14 @@ public class Menu {
                             break;
                         }
                         case 5: {
+
                             WorkInvoice.createInvoice();
                             break;
                         }
                         case 6: {
                             AddNewBooking anbObj=new AddNewBooking();
                             anbObj.addNewBooking();
+
                             break;
                         }
                         case 0: {
