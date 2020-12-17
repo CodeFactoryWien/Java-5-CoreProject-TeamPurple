@@ -53,16 +53,18 @@ public void displayAllGuests(){
 
     ArrayList <DisplayGuests> guestList = getAllGuests();
     //System.out.println("First Name: / Last Name: / Address: / Zip-Code: / Country: / Email: / Birth Date: / Phone Number: / Document: / Arrival Date: / Depature Date: ");
-    System.out.println("First Name   Last Name       Address          Zip       Country          Email          " +
-            " Birth Date  Phone Number        Document            Arrival  Departure ");
+    System.out.println("Guest list:");
+    System.out.println();
+    System.out.println("First Name    Last Name      Address                    Zip        Country         Email          " +
+            " Birth Date  Phone Number    Document             Arrival      Departure ");
     for (int i = 0; i < guestList.size(); i++) {
         //System.out.println(guestList.get(i).getFirstName() + " / " +  guestList.get(i).getLastName()+
         // " / " + guestList.get(i).getAddress() + " / " + guestList.get(i).getZip() + " / " +
         // guestList.get(i).getCountry() + " / " + guestList.get(i).getEmail() + " / " + guestList.get(i).getBirth()
-        // + " / " + guestList.get(i).getPhoneNumber() + " / " + guestList.get(i).getDocument() + "    /   " +  guestList.get(i).getArrival() + " /    " +  guestList.get(i).getDepature());
-        System.out.println(formatString(12,guestList.get(i).getFirstName())+"  "+
-                formatString(15,guestList.get(i).getLastName())+"  " +
-                formatString(15,guestList.get(i).getAddress())+"   " +
+        // + " / " + guestList.get(i).getPhoneNumber() + " / " + guestList.get(i).getDocument() + " / " +  guestList.get(i).getArrival() + " / " +  guestList.get(i).getDepature());
+        System.out.println(formatString(12,guestList.get(i).getFirstName().toUpperCase())+"  "+
+                formatString(15,guestList.get(i).getLastName().toUpperCase())+"  " +
+                formatString(25,guestList.get(i).getAddress())+"   " +
                 formatString(10,guestList.get(i).getZip() )+"  " +
                 formatString(15,guestList.get(i).getCountry() )+"  " +
                 formatString(15,guestList.get(i).getEmail() )+"  " +guestList.get(i).getBirth()+"  "+
@@ -76,11 +78,20 @@ public void displayAllGuests(){
         for (int n=0;n<length;n++){
             x.append(" ");
         }
+        String formattedString=myString;
         int lengthOfMyString=myString.length();
-        String formattedString=myString+x; //field to help formatting name  20 char long in the list
-
-        formattedString=formattedString.substring(0,length-1);
-
+        String part1OfMyString;
+        String part2OfMyString;
+        if (length<lengthOfMyString){
+            part1OfMyString=myString.substring(0,length-1);
+            part2OfMyString=myString.substring(length,lengthOfMyString-1);
+            if(part2OfMyString.isEmpty()) {
+                formattedString = formattedString.substring(0, length - 1);
+            }
+        }else {
+            formattedString = myString + x; //field to help formatting name  20 char long in the list
+            formattedString = formattedString.substring(0, length - 1);
+        }
         return formattedString;
     }
 

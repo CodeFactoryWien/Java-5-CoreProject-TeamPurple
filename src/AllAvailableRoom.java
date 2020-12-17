@@ -37,12 +37,13 @@ public class AllAvailableRoom {
             System.out.println("-----available rooms -----");
             int count=0;
             while (rs.next()) {
-                count++;
-                System.out.println("ID: " + rs.getInt("id") + " " + rs.getString("name") + " price: " + rs.getFloat("price"));
-            }
+                    count++;
+                    System.out.println("ID: " + rs.getInt("id") + " " + rs.getString("name") + " price: " + rs.getFloat("price"));
+                }
             if(count==0){
-                System.out.println("Sorry, there are no available rooms.");
-            }
+                    System.out.println("Sorry, there are no available rooms.");
+                }
+
         } catch (Exception ex) {
             System.out.println(ex);
         }
