@@ -35,11 +35,14 @@ public class AllAvailableRoom {
             ps.setDate(2, toDate);
             ResultSet rs = ps.executeQuery();
             System.out.println("-----available rooms -----");
-            if (rs.next())
-                while (rs.next()) {
-                    System.out.println("ID: " + rs.getInt("id") + " " + rs.getString("name") + " price: " + rs.getFloat("price"));
-                }
-            else System.out.println("Sorry, there are no available rooms.");
+            int count=0;
+            while (rs.next()) {
+                count++;
+                System.out.println("ID: " + rs.getInt("id") + " " + rs.getString("name") + " price: " + rs.getFloat("price"));
+            }
+            if(count==0){
+                System.out.println("Sorry, there are no available rooms.");
+            }
         } catch (Exception ex) {
             System.out.println(ex);
         }
