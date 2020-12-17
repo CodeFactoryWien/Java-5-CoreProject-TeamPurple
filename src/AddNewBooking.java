@@ -14,12 +14,12 @@ public class AddNewBooking {
     public AddNewBooking() {
     }
 
-    public static void addNewBooking(){
+    public void addNewBooking(){
 
 
         System.out.println("Please check the guest data, hier you can enter booking only for existing guest!");
         String choice=WorkInvoice.askingYesOrNo("Do you want to continue? (Y/N) ");
-        if (choice=="N"){
+        if (choice.equals("N")){
             return;
         }
 
@@ -67,7 +67,7 @@ public class AddNewBooking {
 
     }
 
-    public static DisplayGuests selectGuest(Connection con) {
+    public DisplayGuests selectGuest(Connection con) {
         Scanner scanner = new Scanner(System.in);
         int selection;
         boolean exit = false;
@@ -93,7 +93,7 @@ public class AddNewBooking {
         }
         return guest;
     }
-    public static DisplayGuests checkGuestId(int selection, Connection con) {
+    public DisplayGuests checkGuestId(int selection, Connection con) {
 
         DisplayGuests guest = null;
         try {
@@ -120,7 +120,7 @@ public class AddNewBooking {
     }
 
 
-    public static void readmyGuests(Connection con) {
+    public void readmyGuests(Connection con) {
         try {
             List<DisplayGuests> guests=getAllRowsGuests(con);
             assert guests != null;
@@ -189,7 +189,7 @@ public class AddNewBooking {
 
 
 
-    static public void displayRowsGuests(List<DisplayGuests> list) {
+    public void displayRowsGuests(List<DisplayGuests> list) {
         System.out.println("*****************************************************************************");
         System.out.println("*                         List of all Guests                              *");
         System.out.println("*****************************************************************************");
@@ -216,7 +216,7 @@ public class AddNewBooking {
      * @param myString
      * @return
      */
-    public static String formatMyString(int length,String myString){
+    public String formatMyString(int length,String myString){
         StringBuilder x= new StringBuilder(length);
         for (int n=0;n<length;n++){
             x.append(" ");
@@ -233,7 +233,7 @@ public class AddNewBooking {
      *              for example:"Please enter the Date of arrival yyyy.mm.dd: "
      * @return
      */
-    public static Date askDate(String text){
+    public Date askDate(String text){
 
         boolean exit=false;
         String myDate="0000";
@@ -251,7 +251,7 @@ public class AddNewBooking {
             try {
                 if (myDate.length()>=10 && myDate !=null){
 
-                    exit = AddNewBooking.isValid(myDate.substring(0, 4) + "-" +
+                    exit = isValid(myDate.substring(0, 4) + "-" +
                             myDate.substring(5, 7) + "-" + myDate.substring(8, 10));
 
                 }else {
@@ -269,7 +269,7 @@ public class AddNewBooking {
 
 
 
-    public static boolean isValid(String date) {
+    public boolean isValid(String date) {
 
         boolean valid = false;
         try {
@@ -287,7 +287,7 @@ public class AddNewBooking {
         return valid;
     }
 
-    public static int askTotal(){
+    public int askTotal(){
         boolean exit=false;
         int total=0;
         Scanner scanner = new Scanner(System.in);
@@ -308,7 +308,7 @@ public class AddNewBooking {
         return total;
     }
 
-    public static String enterPaymentType() {
+    public String enterPaymentType() {
         String paymentType = "";
         boolean exit = false;
         int selection;
@@ -331,7 +331,7 @@ public class AddNewBooking {
         return "cash";
     }
 
-    public static int enterSelection(){
+    public int enterSelection(){
         Scanner scanner= new Scanner(System.in);
         int selection = -1;
         boolean exit=false;
@@ -349,7 +349,7 @@ public class AddNewBooking {
     }
 
 
-    public static String enterStatus() {
+    public String enterStatus() {
         String paymentType = "";
         boolean exit = false;
         int selection;
@@ -372,7 +372,7 @@ public class AddNewBooking {
         return "";
     }
 
-    public static String enterNotes(){
+    public String enterNotes(){
         boolean exit=false;
         String notes="";
         Scanner scanner = new Scanner(System.in);
@@ -411,7 +411,7 @@ public class AddNewBooking {
         return freeRooms;
     }
 
-    public static int selectRoom(ArrayList<Integer> freeRooms){
+    public int selectRoom(ArrayList<Integer> freeRooms){
         boolean exit = false;
         int selection;
         System.out.println("Please select a Room!");
@@ -425,7 +425,7 @@ public class AddNewBooking {
         }
         return 0;
     }
-    public static int writeNewBooking(MyBooking newBooking, Connection con) {
+    public int writeNewBooking(MyBooking newBooking, Connection con) {
         int bookingId=0;
         try {
             String query1 = "insert into bookings (arrival_date,departure_date,total_price,payment_type,status," +

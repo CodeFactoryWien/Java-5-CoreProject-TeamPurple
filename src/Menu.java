@@ -56,7 +56,8 @@ public class Menu {
                             break;
                         }
                         case 6: {
-                            AddNewBooking.addNewBooking();
+                            AddNewBooking anbObj=new AddNewBooking();
+                            anbObj.addNewBooking();
                             break;
                         }
                         case 0: {
