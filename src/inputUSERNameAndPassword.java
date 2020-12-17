@@ -40,6 +40,7 @@ public class  inputUSERNameAndPassword{
                 System.out.println("Enter Valid username and password");
                 connection.close();
             }
+            //asdf
             connection.close();
         } catch (SQLException sql) {
             sql.printStackTrace();
