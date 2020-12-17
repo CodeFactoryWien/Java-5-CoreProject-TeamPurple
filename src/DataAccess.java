@@ -11,7 +11,6 @@ public class DataAccess {
 
     public DataAccess() throws SQLException, ClassNotFoundException {
         java.lang.Class.forName("com.mysql.cj.jdbc.Driver");
-        System.out.println("Connecting to database...");
         SECRET secret = new SECRET();
         connection = DriverManager.getConnection(url, secret.getUser(), secret.getPassword());
         connection.setAutoCommit(true);
