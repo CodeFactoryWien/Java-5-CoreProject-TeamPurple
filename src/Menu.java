@@ -6,7 +6,7 @@ public class Menu {
     public Menu(DataAccess dataAccess){
         System.out.println("+------------------------------------+");
         System.out.println("|                                    |");
-        System.out.println("|     Welcome to hotel menu          |");
+        System.out.println("|       Welcome to hotel menu        |");
         System.out.println("|                                    |");
         System.out.println("+------------------------------------+");
         showMenu(dataAccess);
@@ -18,8 +18,8 @@ public class Menu {
 
             System.out.println("+++++++++++++++++++++++++++++++++++" + "\n");
             System.out.println("1. Display all Rooms");
-            System.out.println("2. Display the guests that are booked in the rooms ");
-            System.out.println("3. Display all Available Room ");
+            System.out.println("2. Display the guests that are booked in the rooms");
+            System.out.println("3. Display all Available Room");
             System.out.println("4. Create new Guest");
             System.out.println("5. Create booking");
             System.out.println("6. Create  invoice");
