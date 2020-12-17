@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -40,11 +37,14 @@ public class AddNewGuest {
             System.out.println("Enter email");
             String email = scanner.next();
 
-            System.out.println("Enter birthdate in format yyyy-MM-dd");
-            String birthDate = scanner.next();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date birth = format.parse(birthDate);
-            java.sql.Date sqlBirth = new java.sql.Date(birth.getTime());
+
+            //System.out.println("Enter birthdate in format yyyy-MM-dd");
+            AddNewBooking anbObj=new AddNewBooking();
+            Date birthDate = anbObj.askDate("Enter birthdate in format yyyy-MM-dd: ");   //scanner.next();
+
+            //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            //java.util.Date birth = format.parse(birthDate);
+            //java.sql.Date sqlBirth = new java.sql.Date(birth.getTime());
 
             System.out.println("Enter telephone");
             long telephone = scanner.nextLong();
@@ -63,7 +63,7 @@ public class AddNewGuest {
             ps.setString(4, ZIP);
             ps.setString(5, country);
             ps.setString(6, email);
-            ps.setDate(7, sqlBirth);
+            ps.setDate(7, birthDate);
             ps.setLong(8, telephone);
             ps.setString(9, document);
             ps.setString(10, document);
