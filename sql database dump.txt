@@ -1,0 +1,298 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 17, 2020 at 10:45 AM
+-- Server version: 10.4.16-MariaDB
+-- PHP Version: 7.4.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `hotel`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `id` int(9) NOT NULL,
+  `arrival_date` date NOT NULL,
+  `departure_date` date NOT NULL,
+  `total_price` int(11) NOT NULL,
+  `payment_type` enum('credit card','paypal','banktransfer','cash') NOT NULL,
+  `status` enum('booked','cancelled','payed','') NOT NULL,
+  `notes` varchar(255) DEFAULT NULL,
+  `fk_guest_id` int(11) NOT NULL,
+  `fk_room_id` int(11) NOT NULL,
+  `fk_staff_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `arrival_date`, `departure_date`, `total_price`, `payment_type`, `status`, `notes`, `fk_guest_id`, `fk_room_id`, `fk_staff_id`) VALUES
+(1, '2020-12-14', '2020-12-21', 23, 'credit card', 'booked', 'he was angry man', 1, 1, 1),
+(2, '2020-12-15', '2020-12-21', 33, 'paypal', 'payed', NULL, 2, 2, 2),
+(3, '2020-12-15', '2020-12-21', 33, 'paypal', 'payed', NULL, 3, 2, 3),
+(4, '2020-12-22', '2020-12-24', 0, 'banktransfer', 'cancelled', NULL, 4, 1, 2),
+(5, '2020-12-25', '2020-12-27', 0, 'banktransfer', 'cancelled', NULL, 4, 1, 2),
+(6, '2020-12-20', '2020-12-22', 43, 'cash', 'booked', NULL, 5, 3, 1),
+(7, '2020-12-20', '2020-12-23', 43, 'paypal', 'booked', NULL, 6, 4, 2),
+(8, '2020-12-20', '2020-12-23', 53, 'cash', 'cancelled', NULL, 7, 1, 3),
+(9, '2020-02-02', '2020-03-03', 12, 'credit card', 'booked', 'ok', 2, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(9) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `capacity` int(11) NOT NULL,
+  `price` float NOT NULL,
+  `roomsize` int(11) NOT NULL,
+  `facilities` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `capacity`, `price`, `roomsize`, `facilities`) VALUES
+(1, ' single room', 1, 23, 15, ' WLAN '),
+(2, ' double room', 2, 33, 25, 'tv, WLAN '),
+(3, 'superior double room', 3, 43, 35, 'tv, coffee machine, WLAN '),
+(4, ' suite', 4, 53, 45, 'tv coffee machine, WLAN ,Mini bar');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guests`
+--
+
+CREATE TABLE `guests` (
+  `id` int(9) NOT NULL,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(35) NOT NULL,
+  `adress` varchar(200) NOT NULL,
+  `zip` varchar(10) NOT NULL,
+  `country` varchar(200) NOT NULL,
+  `email` varchar(40) DEFAULT NULL,
+  `birth` date NOT NULL,
+  `phone_number` varchar(160) DEFAULT NULL,
+  `document` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `guests`
+--
+
+INSERT INTO `guests` (`id`, `first_name`, `last_name`, `adress`, `zip`, `country`, `email`, `birth`, `phone_number`, `document`) VALUES
+(1, 'Rami', ' lechner', 'noth maike street', '010', 'us', 'rami@gmail.com', '1990-02-06', '315400482', 'passport number s1234'),
+(2, 'sola', ' doe', 'south street2', '010', 'us', 'sola@gmail.com', '1994-02-06', '322020343', 'passport NO(23345)'),
+(3, 'JOE', ' lala', 'bm street3', '010', 'us', 'joe@gmail.com', '1980-02-03', '45320343', 'passport NO(22345)'),
+(4, 'shira', 'saka', 'ts street', '010', 'us', 'shira@gmail.com', '1991-03-06', '453020343', 'passport NO(09345)'),
+(5, 'well', ' smith', 'adx street3', '010', 'us', 'well@gmail.com', '1992-04-09', '303090343', 'passport NO98345)'),
+(6, 'mike', ' jonse', ' mai street3', '010', 'us', 'jonse2@gmail.com', '1994-03-16', '2147483647', 'passport NO(171345)'),
+(7, 'maia', ' jack', 'lmn street21', '010', 'us', 'maia@gmail.com', '1996-12-06', '2147483647', 'passport NO(1923455)'),
+(8, 'jems', ' jacky', 'kl street32', '010', 'us', 'jems@gmail.com', '1992-09-02', '30300043', 'passport NO(1923345)'),
+(9, 'kim', 'su', 'kd street12', '010', 'us', 'kim@gmail.com', '1995-09-02', '345020343', 'passport NO(10005)'),
+(10, 'lana', ' lasyn', 'mndstreet5', '010', 'us', 'lana@gmail.com', '1994-10-16', '303093343', 'passport NO(170235)'),
+(13, 'lila', 'saki', 'lisastrasse', '1020', 'austria', 'lila@gmail.com', '1990-01-01', '2345671', 's123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoice`
+--
+
+CREATE TABLE `invoice` (
+  `id` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `fk_bookings_id` int(11) NOT NULL,
+  `fk_staff_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `invoice`
+--
+
+INSERT INTO `invoice` (`id`, `date`, `fk_bookings_id`, `fk_staff_id`) VALUES
+(1, '2020-12-23 15:58:44', 1, 1),
+(2, '2020-12-15 12:12:29', 8, 3),
+(9, '2020-12-17 09:31:56', 7, 2),
+(10, '2020-12-17 09:34:29', 4, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms`
+--
+
+CREATE TABLE `rooms` (
+  `id` int(9) NOT NULL,
+  `room_number` int(11) NOT NULL,
+  `fk_category_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `room_number`, `fk_category_id`) VALUES
+(1, 111, 1),
+(2, 112, 2),
+(3, 113, 3),
+(4, 114, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff`
+--
+
+CREATE TABLE `staff` (
+  `id` int(9) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `password` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`id`, `username`, `name`, `password`) VALUES
+(1, 'maxi7', 'maxi  mailan', '123'),
+(2, 'joe2', 'joe  doe', '456'),
+(3, 'maria3', 'maria loes', '789');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_guest_id` (`fk_guest_id`),
+  ADD KEY `fk_room_id` (`fk_room_id`),
+  ADD KEY `fk_staff_id` (`fk_staff_id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `guests`
+--
+ALTER TABLE `guests`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `invoice`
+--
+ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_bookings_id` (`fk_bookings_id`);
+
+--
+-- Indexes for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_category_id` (`fk_category_id`);
+
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `guests`
+--
+ALTER TABLE `guests`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `invoice`
+--
+ALTER TABLE `invoice`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `fk_guest_id` FOREIGN KEY (`fk_guest_id`) REFERENCES `guests` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_room_id` FOREIGN KEY (`fk_room_id`) REFERENCES `rooms` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_staff_id` FOREIGN KEY (`fk_staff_id`) REFERENCES `staff` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `invoice`
+--
+ALTER TABLE `invoice`
+  ADD CONSTRAINT `fk_bookings_id` FOREIGN KEY (`fk_bookings_id`) REFERENCES `bookings` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD CONSTRAINT `fk_category_id` FOREIGN KEY (`fk_category_id`) REFERENCES `category` (`id`) ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
